@@ -1,20 +1,19 @@
 var express = require('express');
 var fs = require('fs');
-var buff = new Buffer(64);
-var len = nulll;
+var d = null;
 
 fs.readFile('index.html', 'utf8', function (err, data) {
     if (err) {
-	len = buff.write("there was a file-read error");
+	console.log("there was a file-read error: " + err);
     }
-    len = buff.write(data);
+    d = data;
 });
 
 var app = express.createServer(express.logger());
 
 
 app.get('/', function(request, response) {
-    response.send(buff.toString('utf8', 0, len));
+    response.send(d);
 });
 
 var port = process.env.PORT || 5000;
